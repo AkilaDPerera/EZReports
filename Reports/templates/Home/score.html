@@ -1,0 +1,209 @@
+{% extends 'header.html' %}
+
+{% block content %}
+	<div class="left">
+		<div class="page-header">
+			<h1 style="font-variant: small-caps;"><center>Student Report</center></h1>
+			<h3 class="name">Name: {{data.0.student.name}}</h3>
+			<h3 class="index">Index: <span>{{data.0.student.index}}</span></h3>
+		</div>
+		{% load filters %}
+		{% for exam_data in data %}
+			<div class="exam">
+				<div class="perf">
+					<label class="inline">Year of exam: <span>{{exam_data.exam.year}}</span></span></label>
+					<label class="inline">Term: <span>{{exam_data.exam.term}}</span></label>
+					<label class="inline">Grade: <span>{{exam_data.exam.grade}}</span></label>
+					<label class="inline">Class: <span>{{exam_data.class}}</span></label>
+					
+					<br>
+					<label>
+						Uploaded by: <span>{{exam_data.produced_by}}</span>
+						On: <span>{{exam_data.date}}</span>
+					</label><br>
+				</div>
+				<table class="cus_table">
+					<tr>
+						<th>Subjects</th>
+						<th>Marks</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+					
+					<tr>
+						<td>{{exam_data.subjects.subject2.0|getValidEntry}}</td>
+						<td>{{exam_data.subjects.subject2.1|getValidEntry}}</td>
+						<td>&nbsp</td>
+						<td>Average</td>
+						<td>{{exam_data.performance.average|getValidEntry}}</td>
+					</tr>
+					<tr>
+						<td>{{exam_data.subjects.subject3.0|getValidEntry}}</td>
+						<td>{{exam_data.subjects.subject3.1|getValidEntry}}</td>
+						<td>&nbsp</td>
+						<td>Total</td>
+						<td>{{exam_data.performance.total|getValidEntry}}</td>
+					</tr>
+					<tr>
+						<td>{{exam_data.subjects.subject4.0|getValidEntry}}</td>
+						<td>{{exam_data.subjects.subject4.1|getValidEntry}}</td>
+						<td>&nbsp</td>
+						<td>Z-Score</td>
+						<td>{{exam_data.performance.zscore|getValidEntry}}</td>
+					</tr>
+					<tr>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td>Attendence</td>
+						<td>{{exam_data.performance.attendence|getValidEntry}}%</td>
+					</tr>
+					<tr>
+						<td>{{exam_data.subjects.subject1.0|getValidEntry}}</td>
+						<td>{{exam_data.subjects.subject1.1|getValidEntry}}</td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+						<td>&nbsp</td>
+					</tr>
+				</table>
+				<label class="rank">Rank: <span>{{exam_data.performance.rank|getValidEntry}}</span></label>
+			</div>
+			<hr>
+		{% endfor %}
+	</div>
+	
+	<div class="right">
+		<div class="page-header"">
+			<br>
+			<h2 style="font-variant: small-caps;"><center>Contact Teacher</center></h2>
+			<h4 style="padding-left: 5px;">{{data.0.produced_by}}</h4>
+		</div>
+		
+		<div class="form">
+			<form action="/send/" id="submit">
+				{% csrf_token %}
+				<input type="hidden" name="student_id" value="{{data.0.student.index}}" id="student_id"/>
+				<input type="hidden" name="user_id" value="{{data.0.producer_id}}" id="user_id"/>
+				
+				<!--<select name="mr_mrs">
+					<option selected="selected" value="Mr.">Mr.</option>
+					<option value="Mrs.">Mrs.</option>
+				</select> -->
+				
+				 <div class="form-group">
+			    	<label for="name">Name: </label>
+			    	<input type="text" class="form-control" id="name" name="name" required="required"/>
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<label for="email">Email:</label>
+			    	<input type="email" class="form-control" id="email" name="email" required="required"/>
+			  	</div>
+			  	
+			  	<div class="form-group">
+			    	<label for="msg">Message: </label>
+			    	<textarea  rows="5" class="form-control" id="msg" name="msg" required="required"></textarea>
+			  	</div>
+			  	
+			  	<button type="submit" class="btn btn-default col-xs-12 col-sm-offset-8 col-sm-4 col-md-offset-8 col-md-4 col-lg-offset-8 col-lg-4">Send</button>
+			</form>
+		</div>
+		
+		<div class="history">
+			<label>Previous messages:</label>
+			
+			<div id="message"></div>
+			{% for msg in data.0.msgs %}
+				<p style="margin-bottom: 0px;">{{msg.datetime}}</p>
+				<p>{{msg.msg}}</p><br>
+			{% endfor %}
+		</div>
+	</div>
+	
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			    	<div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        	<h4 class="modal-title">INFO</h4>
+			        </div>
+			        <div class="modal-body">
+			        	<p>You can only send three emails per day. Therefore please try again tomorrow.</p>
+			        </div>
+			        <div class="modal-footer">
+			        	<button type="button" class="btn btn-default" onclick="return hide();">Got it</button>
+			        </div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal2" role="dialog">
+			<div class="modal-dialog">
+			    <!-- Modal content-->
+			    <div class="modal-content">
+			    	<div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        	<h4 class="modal-title">Message sent</h4>
+			        </div>
+			        <div class="modal-body">
+			        	<p>Please give away few days to reply...</p>
+			        </div>
+			        <div class="modal-footer">
+			        	<button type="button" class="btn btn-default" onclick="return hide();">Got it</button>
+			        </div>
+			  	</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		function hide(){
+			$('#myModal').modal('hide');
+			$('#myModal2').modal('hide');
+		}
+		function update(data){
+			document.getElementById("message").innerHTML = data[0]['datetime']+"</p><p>"+data[0]['msg']+"</p><br>" + document.getElementById("message").innerHTML+"<p style=\"margin-bottom: 0px;\">";
+		};
+		function error(data) {
+			$('#myModal').modal('toggle');
+		};
+		function process(event){
+			event.preventDefault();
+			var token = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+			var student_id = document.getElementById("student_id").value;
+			var user_id = document.getElementById("user_id").value;
+			var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+			var msg = document.getElementById("msg").value;
+			
+			document.getElementById("name").value = "";
+			document.getElementById("email").value = "";
+			document.getElementById("msg").value = "";
+			
+			$('#myModal2').modal('toggle'); /* Successful msg */
+			
+			var posting = $.post(
+					document.URL+"send/",
+					{
+						"csrfmiddlewaretoken":token,
+						"student_id":student_id,
+						"user_id":user_id,
+						"name": name,
+						"email":email,
+						"msg":msg
+					}
+			);
+			posting.done(update);
+			posting.fail(error);
+		};
+
+		$("#submit").submit(process);
+	</script>
+{% endblock%}
