@@ -21,7 +21,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "{{ secret_key }}"
+SECRET_KEY = "c*e$(kd&hs9lwf&*#(tqlji2i@w%5@hx)&%#0rgriyhyfrkb-5"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = '{{ project_name }}.urls'
+ROOT_URLCONF = 'EZReportsWEB.urls'
 
 TEMPLATES = [
     {
@@ -80,7 +80,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+WSGI_APPLICATION = 'EZReportsWEB.wsgi.application'
 
 
 # Database
