@@ -1,5 +1,5 @@
 """
-Django settings for {{ project_name }} project on Heroku. For more info, see:
+Django settings for EZReportsWEB project on Heroku. For more info, see:
 https://github.com/heroku/heroku-django-template
 
 For more information on this file, see
