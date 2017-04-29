@@ -1,21 +1,16 @@
 from django.shortcuts import render, redirect
+from django.http.response import HttpResponse, HttpResponseBadRequest
+from django.contrib.auth import get_user_model
+from django.utils.timezone import localtime 
+from rest_framework import permissions, viewsets
 
 from Reports.models import Student, Subject, ClassRoom, Exam, Mark, Performance, ROwner, Message
-from django.contrib.auth import get_user_model
-
-from rest_framework import viewsets
 from Reports.serializers import StudentSerializer, SubjectSerializer, ClassRoomSerializer, ExamSerializer, MarkSerializer, PerformanceSerializer, UserSerializer, ROwnerSerializer, MessageSerializer
+from Reports import emailClient
 
-from rest_framework import permissions
-from django.http.response import HttpResponse
-from django.http.response import HttpResponseBadRequest
-
-from django.utils.timezone import localtime 
 import datetime
 import json
-from Reports import emailClient
- 
- 
+
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer

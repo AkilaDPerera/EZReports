@@ -1,0 +1,162 @@
+.background{
+	box-sizing: border-box;
+	position:fixed;
+	height:100vh;
+	width:100vw;
+	display:block;
+	background-image: url('../img/back.jpg');
+	background-position: center;
+}
+
+/* This classes for use of score.html  */
+.inner-body{
+	box-sizing: border-box;
+	position:fixed;
+	height:70vh;
+	width:100vw;
+	top:15vh;
+	overflow:auto;
+	display:block;
+	background-image: url('../img/logo.png');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* Below are the styles for the right part */
+.right{
+	box-sizing: border-box;
+	width:28vw;
+	height:69vh;
+	display:inline-block;
+	overflow:auto;
+	border: 2px solid;
+	border-radius: 5px;
+	border-color: rgba(212, 212, 212, 0.8);
+}
+
+.form{
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 350px;
+}
+
+.history{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Below are styles for left part */
+.left{
+	margin-left:1vw;
+	padding-left: 10px;
+	box-sizing: border-box;
+	width:69vw;
+	height:69vh;
+	display:inline-block;
+	overflow:auto;
+	border: 2px solid;
+	border-radius: 5px;
+	border-color: rgba(212, 212, 212, 0.8);
+}
+
+.name{
+	box-sizing: border-box;
+	width:49%;
+	font-weight: normal;
+	display:inline-block;
+	text-align: center;
+	margin-left: .5%;
+}
+
+.index{
+	box-sizing: border-box;
+	width:49%;
+	font-weight: normal;
+	display:inline-block;
+	float: right;
+	text-align: center;
+	margin-right: .5%;
+}
+
+.perf{
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.inline{
+	box-sizing: border-box;
+	display:inline-block;
+	font-size:medium;
+	text-align: center;
+	max-width:150px;
+	width:24%;
+}
+
+.exam{
+	border-width: thin;
+	border-style: solid;
+	border-color: rgba(212, 212, 212, 0.3);
+	background-color: rgba(212, 212, 212, 0.3); 
+}
+
+.exam:HOVER{
+	background-color: rgba(212, 212, 212, 0.7); 
+	-webkit-transition: background-color .5s linear, border-radius 5s ease-in 5s;
+	-moz-transition: background-color .5s linear, border-radius 5s ease-in 5s;
+	-o-transition: background-color .2s linear, border-radius 5s ease-in 5s;
+	
+}
+
+.rank{
+	box-sizing: border-box;
+	display:inline-block;
+	width: 18%;
+	font-size: x-large;
+	text-align: center;
+	float: right;
+	margin-top:170px;
+	border: double;
+}
+
+.cus_table{
+	box-sizing: border-box;
+	display:inline-block;
+	width: 80%;
+	margin-left: 1%;
+	border: 1px solid;
+	border-color: rgba(212, 212, 212, 0.8);
+}
+.cus_table th{
+    width:1%;
+    padding: 8px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    font-size: small;
+    font-weight: bold;
+    background-color: rgba(212, 212, 212, 0.3); 
+}
+.cus_table td{
+	width:1%;
+	padding: 8px;
+    vertical-align: top;
+    font-size: medium;
+    border-top: 1px solid #ddd;
+}
+
+
+/* These classes for use of home.html*/
+.cent{
+	text-align: center;
+	vertical-align:middle;
+	border: rgba(212, 212, 212, 0.8);
+}
