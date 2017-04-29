@@ -124,8 +124,8 @@ def score(request):
                 #Get enlish value first
                 subjects["subject1"] = ["English", 100]
                 for i in [0, 1, 2, 3]:
-                    print(marks[i].student_id==1)
-                    print(marks[i].student_id)
+                    print(marks[i].subject_id==1)
+                    print(marks[i].subject_id)
                     
                     if (marks[i].subject_id==1):
                         subjects["subject1"] = [Subject.objects.get(id=marks[i].subject_id).name, marks[i].mark]
