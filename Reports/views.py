@@ -116,21 +116,20 @@ def score(request):
             for performance in qs:
                 #try to create a large dict which contains all the data regarding single exam
                 exam_dict = dict()
-
+                
                 #finding related subjects
                 subjects = dict()
                 marks = Mark.objects.filter(exam_id=performance.exam_id, student_id=index)
-                s = [0, 1, 2, 3]
-                #Get enlish value first
-                for i in range(4):
-                    if Subject.objects.get(id=marks[i].subject_id).name=="English":
-                        subjects["subject1"] = [Subject.objects.get(id=marks[i].subject_id).name, marks[i].mark]
-                        s.remove(i)
-                subjects["subject2"] = [Subject.objects.get(id=marks[s[0]].subject_id).name, marks[s[0]].mark]
-                subjects["subject3"] = [Subject.objects.get(id=marks[s[1]].subject_id).name, marks[s[1]].mark]
-                subjects["subject4"] = [Subject.objects.get(id=marks[s[2]].subject_id).name, marks[s[2]].mark]
-                
-                
+                subnames = ["subject2", "subject3", "subject4"]
+                i=0
+                for mark in marks:
+                    print(mark)
+                    if (mark.subject_id==1):
+                        subjects["subject1"] = [Subject.objects.get(id=mark.subject_id).name, mark.mark]
+                    else:
+                        subjects[subnames[i]] = [Subject.objects.get(id=mark.subject_id).name, mark.mark]
+                        i += 1
+                 
                 #Getting exam details
                 exam = Exam.objects.get(id=performance.exam_id) #year, term, grade
                 
