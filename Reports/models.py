@@ -66,7 +66,6 @@ class ROwner(models.Model):
 class Message(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    mr_mrs = models.CharField(max_length=3)
     parentName = models.CharField(max_length=50)
     email = models.EmailField()
     msg = models.TextField()

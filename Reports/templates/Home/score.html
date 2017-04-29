@@ -86,12 +86,16 @@
 				<input type="hidden" name="student_id" value="{{data.0.student.index}}" id="student_id"/>
 				<input type="hidden" name="user_id" value="{{data.0.producer_id}}" id="user_id"/>
 				
-				<!--<select name="mr_mrs">
-					<option selected="selected" value="Mr.">Mr.</option>
-					<option value="Mrs.">Mrs.</option>
-				</select> -->
+				<div class="form-group title">
+					<label for="title">Title</label>
+				  	<select class="form-control" name="title" id="title">
+				    	<option value="Mr." selected="selected">Mr.</option>
+				    	<option value="Mrs.">Mrs.</option>
+				    	<option value="Miss.">Miss.</option>
+				  	</select>
+				</div>
 				
-				 <div class="form-group">
+				 <div class="form-group nameFORM">
 			    	<label for="name">Name: </label>
 			    	<input type="text" class="form-control" id="name" name="name" required="required"/>
 			  	</div>
@@ -120,7 +124,7 @@
 			{% endfor %}
 		</div>
 	</div>
-	
+
 	<div class="container">
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
@@ -182,6 +186,7 @@
 			var name = document.getElementById("name").value;
 			var email = document.getElementById("email").value;
 			var msg = document.getElementById("msg").value;
+			var title = document.getElementById("title").options[document.getElementById("title").selectedIndex].value;
 			
 			document.getElementById("name").value = "";
 			document.getElementById("email").value = "";

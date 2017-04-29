@@ -180,7 +180,6 @@ class MessageSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     student_id = serializers.IntegerField()
     user_id = serializers.IntegerField()
-    mr_mrs = serializers.CharField()
     parentName = serializers.CharField()
     email = serializers.EmailField()
     msg = serializers.CharField()

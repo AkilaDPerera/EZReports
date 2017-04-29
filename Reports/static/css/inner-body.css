@@ -45,10 +45,15 @@
 	padding-right: 5px;
 }
 
+.title{
+	display:inline-block;
+	width: 30%;
+}
 
-
-
-
+.nameFORM{
+	display:inline-block; 
+	width: 68%;
+}
 
 
 

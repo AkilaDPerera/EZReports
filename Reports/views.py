@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http.response import HttpResponse, HttpResponseBadRequest
 from django.contrib.auth import get_user_model
 from django.utils.timezone import localtime 
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
 
 from Reports.models import Student, Subject, ClassRoom, Exam, Mark, Performance, ROwner, Message
 from Reports.serializers import StudentSerializer, SubjectSerializer, ClassRoomSerializer, ExamSerializer, MarkSerializer, PerformanceSerializer, UserSerializer, ROwnerSerializer, MessageSerializer
@@ -58,7 +58,6 @@ class ROwnerViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
-    permission_classes = (permissions.AllowAny,)
     
     def get_queryset(self):
         #username & password query
@@ -179,7 +178,7 @@ def send(request):
     
     
     #update the db with message
-    message = Message.objects.get_or_create(student_id=data["student_id"], user_id=data["user_id"], mr_mrs="Mr.", parentName=data["name"], email=data["email"], msg=data["msg"], count=1)[0];
+    message = Message.objects.get_or_create(student_id=data["student_id"], user_id=data["user_id"], parentName=data["name"], email=data["email"], msg=data["msg"], count=1)[0];
     message.save()
     
     student = Student.objects.get(index=int(message.student_id))
@@ -189,7 +188,7 @@ def send(request):
     sub = "Inquiring about student(%s-%s) results"%(student.name, student.index)
     
     mail = """
-    Hello Mr./Mrs. %s %s,
+    Hello %s,
     
     %s
     
@@ -199,7 +198,7 @@ def send(request):
     %s
     
     PLEASE DO REPLY TO THE ABOVE EMAIL ADDRESS. PLEASE DO NOT REPLY TO THE EMAIL THAT YOU HAVE RECEIVED THIS MAIL.
-    """%(teacher.first_name,teacher.last_name, message.msg, message.parentName, message.email)
+    """%(teacher.first_name, message.msg, message.parentName, message.email)
     
     emailClient.send(teacher.email, sub, mail)
     
