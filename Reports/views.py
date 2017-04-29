@@ -128,7 +128,7 @@ def score(request):
                         subjects["subject1"] = [Subject.objects.get(id=mark.subject_id).name, mark.mark]
                     else:
                         subjects[subnames[i]] = [Subject.objects.get(id=mark.subject_id).name, mark.mark]
-                        i++
+                        i += 1
                 print(subjects)
                 
                 
