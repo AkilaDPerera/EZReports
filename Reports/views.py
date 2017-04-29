@@ -129,7 +129,7 @@ def score(request):
                         s.remove(i)
                         
                 
-                subjects["subject2"] = [Subject.objects.get(id=marks[s[0]].subject_id).name, 100+marks[s[0]].mark]
+                subjects["subject2"] = [Subject.objects.get(id=marks[s[0]].subject_id).name, marks[s[0]].mark]
                 subjects["subject3"] = [Subject.objects.get(id=marks[s[1]].subject_id).name, marks[s[1]].mark]
                 subjects["subject4"] = [Subject.objects.get(id=marks[s[2]].subject_id).name, marks[s[2]].mark]
                 
