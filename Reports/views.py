@@ -123,7 +123,6 @@ def score(request):
                 subnames = ["subject2", "subject3", "subject4"]
                 i=0
                 for mark in marks:
-                    print(mark)
                     if (mark.subject_id==1):
                         subjects["subject1"] = [Subject.objects.get(id=mark.subject_id).name, mark.mark]
                     else:
