@@ -122,8 +122,8 @@ def score(request):
                 marks = Mark.objects.filter(exam_id=performance.exam_id, student_id=index)
                 s = [0, 1, 2, 3]
                 #Get enlish value first
-                for i in range(4):
-                    if Subject.objects.get(id=marks[i].subject_id).name=="English":
+                for i in [0, 1, 2, 3]:
+                    if (marks[i].subject_id==1):
                         subjects["subject1"] = [Subject.objects.get(id=marks[i].subject_id).name, marks[i].mark]
                         s.remove(i)
                 subjects["subject2"] = [Subject.objects.get(id=marks[s[0]].subject_id).name, marks[s[0]].mark]
