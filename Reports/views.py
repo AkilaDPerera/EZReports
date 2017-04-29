@@ -127,7 +127,7 @@ def score(request):
                     print(marks[i].student_id==1)
                     print(marks[i].student_id)
                     
-                    if (marks[i].student_id==1):
+                    if (marks[i].subject_id==1):
                         subjects["subject1"] = [Subject.objects.get(id=marks[i].subject_id).name, marks[i].mark]
                 
                 subjects["subject2"] = [Subject.objects.get(id=marks[s[0]].subject_id).name, marks[s[0]].mark]
