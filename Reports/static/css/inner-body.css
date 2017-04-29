@@ -157,6 +157,5 @@
 /* These classes for use of home.html*/
 .cent{
 	text-align: center;
-	vertical-align:middle;
-	border: rgba(212, 212, 212, 0.8);
+	margin-top: 10vh;
 }
