@@ -120,11 +120,12 @@ def score(request):
                 #finding related subjects
                 subjects = dict()
                 marks = Mark.objects.filter(exam_id=performance.exam_id, student_id=index)
+                marks = list(marks)
                 s = [0, 1, 2, 3]
                 #Get enlish value first
                 subjects["subject1"] = ["English", 100]
                 for i in [0, 1, 2, 3]:
-                    print(marks)
+                    print(list(marks))
                     print(marks[i])
                     print(marks[i].subject_id==1)
                     print(marks[i].subject_id)
