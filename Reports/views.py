@@ -124,7 +124,9 @@ def score(request):
                 #Get enlish value first
                 subjects["subject1"] = ["English", 100]
                 for i in [0, 1, 2, 3]:
-                    subjects["subject1"] = [Subject.objects.get(id=marks[i].subject_id).name, marks[i].mark]
+                    if (marks[i].subject_id==1):
+                        subjects["subject1"] = [Subject.objects.get(id=marks[0].subject_id).name, marks[0].mark]
+                        
                     #if (int(marks[i].subject_id)==1):
                         #subjects["subject1"] = [Subject.objects.get(id=marks[i].subject_id).name, marks[i].mark]
                         #s.remove(i)
