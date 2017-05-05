@@ -13,8 +13,13 @@ class StudentSerializer(serializers.Serializer):
     name = serializers.CharField()
         
     def create(self, validated_data): #POST Request action
-        student = Student.objects.get_or_create(index=validated_data["index"], name=validated_data["name"])[0]
-        student.save() 
+        try:
+            student = Student.objects.get_or_create(index=validated_data["index"], name=validated_data["name"])[0]
+            student.save() 
+        except:
+            student = Student.objects.get_or_create(index=validated_data["index"])[0]
+            student.name = validated_data["name"]
+            student.save() 
         return student
     
 class SubjectSerializer(serializers.Serializer):
